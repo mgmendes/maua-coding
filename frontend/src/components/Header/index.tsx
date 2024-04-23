@@ -1,15 +1,9 @@
 const Header = () => {
   return (
-    <div className="w-full max-w-screen-lg mx-auto py-12 px-4 lg:px-0">
-      <h1 className="text-2xl font-bold mb-4">Gerador de Avaliações</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores minus
-        expedita eligendi sint voluptates ea, facere repudiandae blanditiis ab
-        quasi explicabo quam officiis, perferendis commodi nobis! Repellendus
-        inventore nobis odio assumenda fugiat ut eos? Hic sed reprehenderit eius
-        quia delectus sapiente itaque, dignissimos quidem aut fugiat architecto
-        magnam ullam repudiandae.
-      </p>
+    <div className="w-full h-20 bg-neutral-800">
+      <div className="w-full h-full max-w-screen-lg mx-auto flex items-center justify-center">
+        <h1 className="text-white">Projeto ChatGPT - IMT</h1>
+      </div>
     </div>
   );
 };
