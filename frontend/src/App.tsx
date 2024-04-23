@@ -4,23 +4,22 @@ import Resumo from "./components/pages/Resumo";
 import MainPage from "./components/pages/MainPage";
 import Header from "./components/Header";
 import Questionario from "./components/pages/Questionario";
+import Contato from "./components/pages/Contato";
 
 function App() {
   return (
-    <div>
+    <Router>
       <Header />
-
       <div>
-        <Router>
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/questionario" element={<Questionario />} />
-            <Route path="/resumo" element={<Resumo />} />
-          </Routes>
-        </Router>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/questionario" element={<Questionario />} />
+          <Route path="/resumo" element={<Resumo />} />
+          <Route path="/contato" element={<Contato />} />
+        </Routes>
       </div>
       <Footer />
-    </div>
+    </Router>
   );
 }
 

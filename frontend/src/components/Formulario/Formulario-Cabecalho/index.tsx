@@ -1,6 +1,6 @@
 const FormularioCabecalho = () => {
   return (
-    <div className="w-full max-w-screen-lg mx-auto py-12 px-4 lg:px-0">
+    <div className="w-full max-w-screen-lg mx-auto py-12 lg:px-0">
       <h1 className="text-2xl font-bold mb-4">Gerador de Avaliações</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores minus
