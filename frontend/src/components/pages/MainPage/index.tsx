@@ -40,7 +40,7 @@ const MainPage = () => {
 
         <Link
           to="/questionario"
-          className="w-full text-center mt-12 bg-purple-700 text-white px-6 py-2 rounded-md hover:bg-purple-600 transition-all duration-300"
+          className="w-full text-center mt-12 bg-emerald-700 text-white px-6 py-2 rounded-md hover:bg-emerald-600 transition-all duration-300"
         >
           COMEÇAR
         </Link>

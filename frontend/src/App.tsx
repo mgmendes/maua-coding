@@ -1,25 +1,28 @@
-import Footer from "./components/Footer";
+import Footer from "./components/ui/Footer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Resumo from "./components/pages/Resumo";
 import MainPage from "./components/pages/MainPage";
-import Header from "./components/Header";
+import Header from "./components/ui/Header";
 import Questionario from "./components/pages/Questionario";
 import Contato from "./components/pages/Contato";
+import DataProvider from "./context/DataContext";
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <div>
+    <DataProvider>
+      <Router>
+        <Header />
+
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/questionario" element={<Questionario />} />
           <Route path="/resumo" element={<Resumo />} />
           <Route path="/contato" element={<Contato />} />
         </Routes>
-      </div>
-      <Footer />
-    </Router>
+
+        <Footer />
+      </Router>
+    </DataProvider>
   );
 }
 

@@ -1,56 +1,77 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import {
-  disciplinas,
-  nivelDificuldade,
-  nivelEscolaridade,
-} from "../../../data";
-import FormularioDescricao from "../../Formulario/Formulario-Descricao";
-import FormularioCabecalho from "../Formulario-Cabecalho";
+import { z } from "zod";
 
-const FormularioCampos = () => {
-  const [numeroQuestoesDissertativas, setNumeroQuestoesDissertativas] =
-    useState(5);
-  const [numeroQuestoesAlternativas, setNumeroQuestoesAlternativas] =
-    useState(5);
+import { disciplinas, nivelDificuldade, nivelEscolaridade } from "../../data";
+import FormularioDescricao from "./Formulario-Descricao";
+import FormularioCabecalho from "./Formulario-Cabecalho";
+import { DataContext } from "../../context/DataContext";
+import { DataContextType, IData } from "../../context/interface";
+
+const Formulario = () => {
+  const [formData, setFormData] = useState<IData>();
+  const { data, saveData } = useContext(DataContext) as DataContextType;
+
   const [numeroQuestoes] = useState(
-    numeroQuestoesAlternativas + numeroQuestoesDissertativas
+    data.numeroQuestoesAlternativas + data.numeroQuestoesDissertativas
   );
 
-  const [tema, setTema] = useState("");
-  const [disciplina, setDisciplina] = useState("");
-  const [escolaridade, setEscolaridade] = useState("");
-  const [dificuldade, setDificuldade] = useState("");
-
-  const data = {
-    tema,
-    disciplina,
-    escolaridade,
-    dificuldade,
-    numeroQuestoesAlternativas,
-    numeroQuestoesDissertativas,
-    numeroQuestoes,
-  };
+  const schema = z.object({
+    tema: z.string(),
+    disciplina: z.string(),
+    escolaridade: z.string(),
+    dificuldade: z.string(),
+    exemplo: z.string(),
+    numeroQuestoesAlternativas: z.number(),
+    numeroQuestoesDissertativas: z.number(),
+  });
 
   const navigator = useNavigate();
 
-  const labelStyles = "text-base font-bold mb-1";
+  const handleForm = async (e: React.FormEvent) => {
+    const { id, value } = e.currentTarget as HTMLInputElement;
 
-  const handleSubmit = (e: React.FormEvent) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData!,
+      [id]: value,
+    }));
+  };
+
+  const handleSaveData = async (e: React.FormEvent, formData: IData) => {
     e.preventDefault();
-    navigator("/resumo");
-    alert(JSON.stringify(data));
-    console.log(data);
+
+    console.log(formData);
+
+    const response = await fetch("http://localhost:3000/gerador-avaliacoes", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    console.log(response);
+
+    if (!response.ok) {
+      alert("Erro ao enviar dados");
+      throw new Error("Erro ao enviar dados");
+    } else {
+      saveData(formData);
+      navigator("/resumo");
+    }
   };
 
   return (
     <div className="w-full bg-white p-6 rounded-md border border-neutral-300">
       <FormularioCabecalho />
 
-      <form className="w-full flex flex-col gap-4 items-center justify-center">
+      <form
+        className="w-full flex flex-col gap-4 items-center justify-center"
+        onSubmit={(e) => handleSaveData(e, formData!)}
+      >
         <div className="w-full flex flex-col gap-2">
-          <label htmlFor="tema" className={labelStyles}>
+          <label htmlFor="tema" className="text-base font-bold mb-1">
             Tema da Avaliação
           </label>
           <FormularioDescricao>
@@ -60,14 +81,13 @@ const FormularioCampos = () => {
             type="text"
             id="tema"
             name="tema"
-            value={tema}
-            onChange={(e) => setTema(e.target.value)}
+            onChange={handleForm}
             className="px-4 py-4 border border-neutral-700 rounded-md text-base"
           />
         </div>
 
         <div className="w-full flex flex-col gap-2">
-          <label htmlFor="tema" className={labelStyles}>
+          <label htmlFor="disciplina" className="text-base font-bold mb-1">
             Disciplina
           </label>
           <FormularioDescricao>
@@ -75,9 +95,10 @@ const FormularioCampos = () => {
           </FormularioDescricao>
           <select
             className="px-4 py-4 border border-neutral-700 rounded-md text-base"
-            onChange={(e) => setDisciplina(e.target.value)}
+            id="disciplina"
+            onChange={handleForm}
           >
-            <option value="none">Selecione...</option>
+            <option value={undefined}>Selecione...</option>
             {disciplinas.map((item) => (
               <option key={item.id} value={item.nome}>
                 {item.nome}
@@ -87,15 +108,16 @@ const FormularioCampos = () => {
         </div>
 
         <div className="w-full flex flex-col gap-2">
-          <label htmlFor="escolaridade" className={labelStyles}>
+          <label htmlFor="escolaridade" className="text-base font-bold mb-1">
             Nível de Escolaridade
           </label>
           <FormularioDescricao>
             Adicionar uma breve descrição
           </FormularioDescricao>
           <select
+            id="escolaridade"
             className="px-4 py-4 border border-neutral-700 rounded-md text-base"
-            onChange={(e) => setEscolaridade(e.target.value)}
+            onChange={handleForm}
           >
             <option>Selecione...</option>
             {nivelEscolaridade.map((item) => (
@@ -107,15 +129,16 @@ const FormularioCampos = () => {
         </div>
 
         <div className="w-full flex flex-col gap-2">
-          <label htmlFor="dificuldade" className={labelStyles}>
+          <label htmlFor="dificuldade" className="text-base font-bold mb-1">
             Dificuldade
           </label>
           <FormularioDescricao>
             Adicionar uma breve descrição
           </FormularioDescricao>
           <select
+            id="dificuldade"
             className="px-4 py-4 border border-neutral-700 rounded-md text-base"
-            onChange={(e) => setDificuldade(e.target.value)}
+            onChange={handleForm}
           >
             <option>Selecione...</option>
             {nivelDificuldade.map((item) => (
@@ -130,44 +153,41 @@ const FormularioCampos = () => {
             Insira uma pergunta de exemplo
           </label>
           <textarea
-            className="px-4 py-4 border border-neutral-700 rounded-md text-base"
             id="exemplo"
+            className="px-4 py-4 border border-neutral-700 rounded-md text-base"
+            onChange={handleForm}
           />
         </div>
 
         <div className="w-full flex items-center gap-6">
           <div className="w-full flex flex-col gap-2">
-            <label htmlFor="dissertativas">Dissertativas</label>
+            <label htmlFor="numeroQuestoesDissertativas">Dissertativas</label>
             <input
+              id="numeroQuestoesDissertativas"
               type="number"
               className="px-4 py-4 border border-neutral-700 rounded-md text-base"
-              onChange={(e) =>
-                setNumeroQuestoesDissertativas(Number(e.target.value))
-              }
+              onChange={handleForm}
               min={0}
-              max={numeroQuestoes - numeroQuestoesAlternativas}
-              defaultValue={numeroQuestoesDissertativas}
+              max={numeroQuestoes - data.numeroQuestoesAlternativas}
             />
           </div>
 
           <div className="w-full flex flex-col gap-2">
-            <label htmlFor="alternativas">Alternativas</label>
+            <label htmlFor="numeroQuestoesAlternativas">Alternativas</label>
             <input
+              id="numeroQuestoesAlternativas"
               type="number"
               className="px-4 py-4 border border-neutral-700 rounded-md text-base"
-              onChange={(e) =>
-                setNumeroQuestoesAlternativas(Number(e.target.value))
-              }
+              onChange={handleForm}
               min={0}
-              max={numeroQuestoes - numeroQuestoesDissertativas}
-              defaultValue={numeroQuestoesAlternativas}
+              max={numeroQuestoes - data.numeroQuestoesDissertativas}
             />
           </div>
         </div>
 
         <button
-          className="w-full bg-purple-800 text-white py-3 rounded-md hover:bg-purple-700 transition-all duration-300 mt-6"
-          onClick={handleSubmit}
+          disabled={formData === undefined ? true : false}
+          className="w-full bg-neutral-800 text-white py-3 rounded-md hover:bg-neutral-700 transition-all duration-300 mt-6 disabled:bg-neutral-200"
         >
           Gerar Avaliação
         </button>
@@ -176,4 +196,4 @@ const FormularioCampos = () => {
   );
 };
 
-export default FormularioCampos;
+export default Formulario;
