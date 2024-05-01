@@ -1,0 +1,27 @@
+{
+  "message": "Consulta Endpoint",
+  "prompt": "Atue como um professor. Elabore uma prova para uma turma do 9 ano fundamental, da matéria de Matemática, sobre o tema de Trigonometria, contendo 5 questões dissertativas de nível fácil. Envie de volta um array javascript, contendo as questões em objetos dentro deste array, seguindo a seguinte estrutura: [{ enunciado: enunciado da questão, resposta: resposta da questão }]",
+  "completion": {
+    "id": "chatcmpl-9JqHF9SjFOSJZaCBo2NQbYQnQsLXF",
+    "object": "chat.completion",
+    "created": 1714516213,
+    "model": "gpt-3.5-turbo-0125",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "[\n    {\n        enunciado: \"Calcule o seno do ângulo de 30 graus.\",\n        resposta: \"0.5\"\n    },\n    {\n        enunciado: \"Calcule o cosseno do ângulo de 60 graus.\",\n        resposta: \"0.5\"\n    },\n    {\n        enunciado: \"Calcule a tangente do ângulo de 45 graus.\",\n        resposta: \"1\"\n    },\n    {\n        enunciado: \"Se sen(x) = 0.8 e x é um ângulo agudo, calcule o valor de x em graus.\",\n        resposta: \"53.13\"\n    },\n    {\n        enunciado: \"Se cos(y) = -0.6 e y é um ângulo obtuso, calcule o valor de y em graus.\",\n        resposta: \"126.87\"\n    }\n]"
+        },
+        "logprobs": null,
+        "finish_reason": "stop"
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 104,
+      "completion_tokens": 194,
+      "total_tokens": 298
+    },
+    "system_fingerprint": "fp_3b956da36b"
+  }
+}
