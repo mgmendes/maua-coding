@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const colors = require("colors");
 
 const { OpenAI } = require("openai");
 
@@ -26,48 +27,34 @@ app.post("/logs", async (req, res) => {
 });
 
 app.post("/gerador-avaliacoes", async (req, res) => {
-  console.log("Rota Gerador Avaliações Atingida");
+  console.log("");
+  console.log(colors.bgWhite(" Rota Gerador Avaliações Atingida "));
 
-  const {
-    tema,
-    disciplina,
-    escolaridade,
-    dificuldade,
-    exemplo,
-    numeroQuestoesAlternativas,
-    numeroQuestoesDissertativas,
-  } = req.body;
+  console.log(req.body);
+
+  const { tema, disciplina, escolaridade, dificuldade, exemplo } = req.body;
 
   console.log(
-    "Dados: ",
+    "Dados recebidos: ",
     tema,
     disciplina,
     escolaridade,
     dificuldade,
-    exemplo,
-    numeroQuestoesAlternativas,
-    numeroQuestoesDissertativas
+    exemplo
   );
 
   // Verifica se os dados foram preenchidos
-  if (
-    !tema ||
-    !disciplina ||
-    !escolaridade ||
-    !dificuldade ||
-    !numeroQuestoesAlternativas ||
-    !numeroQuestoesDissertativas
-  ) {
+  if (!tema || !disciplina || !escolaridade || !dificuldade) {
     return res.status(400).json({ message: "Dados inválidos" });
   }
 
-  const pergunta = `Atue como um professor. Elabore uma prova para uma turma do ${escolaridade}, da matéria de ${disciplina}, sobre o tema de ${tema}, contendo ${numeroQuestoesDissertativas} questões dissertativas de nível ${dificuldade}. Envie de volta um array javascript, contendo as questões em objetos dentro deste array, seguindo a seguinte estrutura: [{ enunciado: enunciado da questão, resposta: resposta da questão }]`;
+  const pergunta = `Atue como um professor. Elabore uma prova para uma turma do ${escolaridade}, da matéria de ${disciplina}, sobre o tema de ${tema}, contendo 3 questões dissertativas de nível ${dificuldade}. Envie como retorno um arquivo JSON, contendo as questões em objetos dentro deste array, sem quebra de parágrafo, seguindo a seguinte estrutura: [{ enunciado: enunciado da questão, resposta: resposta da questão }].`;
 
   console.log(pergunta);
 
   const model = "gpt-3.5-turbo";
   const role = "user";
-  const max_tokens = 300;
+  const max_tokens = 500;
 
   const completion = await openai.chat.completions.create({
     messages: [{ role: role, content: pergunta }],
@@ -79,7 +66,9 @@ app.post("/gerador-avaliacoes", async (req, res) => {
 
   console.log(completion);
 
-  res.json({ message: "Consulta Endpoint", completion, data: response });
+  console.log(completion.choices[0].message);
+
+  res.json({ message: "Consulta Endpoint", completion, response });
 });
 
 app.listen(PORT, () => {

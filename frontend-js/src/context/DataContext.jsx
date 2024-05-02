@@ -10,8 +10,9 @@ const DataProvider = ({ children }) => {
     escolaridade: "",
     dificuldade: "",
     exemplo: "",
-    numeroQuestoesDissertativas: 3,
   });
+
+  const [avaliacao, setAvaliacao] = useState([]);
 
   const saveData = (data) => {
     const newData = {
@@ -20,13 +21,17 @@ const DataProvider = ({ children }) => {
       escolaridade: data.escolaridade,
       dificuldade: data.dificuldade,
       exemplo: data.exemplo,
-      numeroQuestoesDissertativas: data.numeroQuestoesDissertativas,
+      numeroQuestoesDissertativas: 3,
     };
     setData(newData);
   };
 
+  const saveAvaliacao = (data) => {
+    setAvaliacao(data);
+  };
+
   return (
-    <DataContext.Provider value={{ data, saveData }}>
+    <DataContext.Provider value={{ data, saveData, avaliacao, saveAvaliacao }}>
       {children}
     </DataContext.Provider>
   );

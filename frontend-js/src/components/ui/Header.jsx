@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="w-full h-20 bg-neutral-800">
-      <div className="w-full h-full max-w-screen-lg px-4 lg:px-0 mx-auto flex items-center justify-between">
+    <div className="w-full h-12 bg-neutral-800 print:hidden">
+      <div className="w-full h-full max-w-screen-lg px-4 lg:px-0 mx-auto flex items-center justify-between text-sm">
         <h1 className="text-white">Projeto ChatGPT - IMT</h1>
 
         <nav>

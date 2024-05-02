@@ -14,6 +14,16 @@ const MainPage = () => {
             <br /> Avaliações
           </h2>
         </div>
+        <div>
+          A fazer:
+          <ul>
+            <li>Validar campos do formulário no front-end</li>
+            <li>Gerar testes unitários para alguns itens do front-end</li>
+            <li>Ajustar a página de contato</li>
+            <li>Salvar a pesquisa e o retorno no banco de dados</li>
+            <li>Criar página de loading</li>
+          </ul>
+        </div>
         <p className="leading-7 mb-4">
           Apresentamos a nova ferramenta essencial para educadores: o Gerador de
           Avaliações, uma aplicação inovadora desenhada para transformar a
