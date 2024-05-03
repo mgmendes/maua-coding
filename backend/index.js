@@ -64,8 +64,6 @@ app.post("/gerador-avaliacoes", async (req, res) => {
 
   const response = completion.choices[0].message.content;
 
-  console.log(completion);
-
   console.log(completion.choices[0].message);
 
   res.json({ message: "Consulta Endpoint", completion, response });
