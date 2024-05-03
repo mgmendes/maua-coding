@@ -1,4 +1,4 @@
-# Projeto de Pós-Graduação em TI: Gerador de Avaliações - API Chat GPT
+## Projeto de Pós-Graduação em TI: Gerador de Avaliações - API Chat GPT
 
 Este descritivo visa fornecer uma visão geral do projeto desenvolvido, tecnologias utilizadas, e outras informações relevantes para os docentes avaliadores.
 
@@ -12,23 +12,23 @@ Com o intuito elaborar uma ferramenta de auxílio para os professores das unidad
 
 #### Funcionalidades Principais:
 
-•	Interface Web Responsiva: Desenvolvimento de uma interface web intuitiva e responsiva utilizando HTML, CSS e JavaScript para garantir uma experiência amigável ao usuário em diferentes dispositivos.
-•	Formulário de Entrada de Dados: Implementação de um formulário com campos de entrada para coleta de dados relevantes para a avaliação. Os dados serão validados antes do envio para garantir consistência.
-•	Integração com API do ChatGPT: Utilização da API do ChatGPT para processar os dados inseridos no formulário e gerar automaticamente uma avaliação com base em modelos de linguagem avançados.
-•	Testes e Validação: Realização de testes unitários e de integração para validar o funcionamento correto da aplicação em diferentes cenários de uso.
+- Interface Web Responsiva: Desenvolvimento de uma interface web intuitiva e responsiva utilizando HTML, CSS e JavaScript para garantir uma experiência amigável ao usuário em diferentes dispositivos.
+- Formulário de Entrada de Dados: Implementação de um formulário com campos de entrada para coleta de dados relevantes para a avaliação. Os dados serão validados antes do envio para garantir consistência.
+- Integração com API do ChatGPT: Utilização da API do ChatGPT para processar os dados inseridos no formulário e gerar automaticamente uma avaliação com base em modelos de linguagem avançados.
+- Testes e Validação: Realização de testes unitários e de integração para validar o funcionamento correto da aplicação em diferentes cenários de uso.
 
 #### Tecnologias Utilizadas:
 
-Front-end: HTTP, HTML, CSS, JavaScript, Framework (React.js), Tailwind CSS
-Back-end: Node.js (Express.js).
-API: ChatGPT API (OpenAI)
-Banco de Dados: MySQL.
+- Front-end: HTTP, HTML, CSS, JavaScript, Framework (React.js), Tailwind CSS
+- Back-end: Node.js (Express.js).
+- API: ChatGPT API (OpenAI)
+- Banco de Dados: MySQL.
 
 #### Autores:
 
-Brayan Oliveira da Silva;
-Marcio Mendes;
-Vitor Giannaccini Tito da Silva.
+- Brayan Oliveira da Silva;
+- Marcio Mendes;
+- Vitor Giannaccini Tito da Silva.
 
 #### Agradecimentos:
 
