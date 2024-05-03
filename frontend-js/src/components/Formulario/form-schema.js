@@ -6,6 +6,4 @@ export const schema = z.object({
   escolaridade: z.string(),
   dificuldade: z.string(),
   exemplo: z.string(),
-  numeroQuestoesAlternativas: z.number(),
-  numeroQuestoesDissertativas: z.number(),
 });

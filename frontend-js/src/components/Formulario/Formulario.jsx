@@ -17,8 +17,6 @@ const Formulario = () => {
 
   const { saveData } = useContext(DataContext);
 
-  console.log(formData);
-
   const navigator = useNavigate();
 
   const handleForm = async (e) => {

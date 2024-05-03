@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 import logo from "/logo-604x679.png";
+import { FaFilePdf } from "react-icons/fa";
 
 const MainPage = () => {
   return (
@@ -14,40 +15,87 @@ const MainPage = () => {
             <br /> Avaliações
           </h2>
         </div>
-        <div>
+        <div className="w-full bg-yellow-100 p-2">
           A fazer:
           <ul>
             <li>Validar campos do formulário no front-end</li>
             <li>Gerar testes unitários para alguns itens do front-end</li>
             <li>Ajustar a página de contato</li>
             <li>Salvar a pesquisa e o retorno no banco de dados</li>
-            <li>Criar página de loading</li>
           </ul>
         </div>
-        <p className="leading-7 mb-4">
-          Apresentamos a nova ferramenta essencial para educadores: o Gerador de
-          Avaliações, uma aplicação inovadora desenhada para transformar a
-          maneira como os professores preparam testes e provas. Com uma
-          interface amigável e recursos automatizados, nossa plataforma permite
-          aos educadores criar avaliações personalizadas rapidamente, abrangendo
-          uma ampla gama de disciplinas e níveis escolares. Não importa se você
-          precisa de um teste rápido de matemática ou uma avaliação complexa de
-          história, o Gerador de Avaliações oferece templates adaptáveis que
-          garantem a qualidade e relevância dos conteúdos, otimizando o tempo e
-          melhorando o desempenho dos alunos.
+        <p className="leading-7 mb-3">
+          Apresentamos a nova ferramenta para educadores: o Gerador de
+          Avaliações, uma aplicação desenhada para transformar a maneira como os
+          professores preparam testes e provas.
         </p>
-        <p className="leading-7">
-          A eficiência é a chave com o Gerador de Avaliações: basta selecionar o
-          tipo de prova, o conteúdo específico e o nível de dificuldade, e nossa
-          tecnologia cuida do resto. A plataforma também inclui funcionalidades
-          de análise que ajudam os professores a entender as áreas onde os
-          alunos podem precisar de mais apoio. Além disso, nossa aplicação é
-          segura e fácil de integrar com sistemas de gestão de aprendizado já
-          existentes, facilitando a incorporação em qualquer ambiente
-          educacional. Libere o potencial completo de sua prática docente com o
-          Gerador de Avaliações, a ferramenta que está redefinindo a preparação
-          de testes no ambiente educacional moderno.
+        <p className="leading-7 mb-3">
+          Com uma interface amigável e recursos automatizados, nossa plataforma
+          permite aos educadores criar avaliações personalizadas rapidamente,
+          abrangendo uma ampla gama de disciplinas e níveis escolares. Não
+          importa se você precisa de um teste rápido de matemática ou uma
+          avaliação complexa de história, o Gerador de Avaliações oferece
+          templates adaptáveis que garantem a qualidade e relevância dos
+          conteúdos, otimizando o tempo e melhorando o desempenho dos alunos.
         </p>
+
+        <div className="w-full bg-neutral-100 border border-neutral-300 p-4 rounded-md">
+          <h2 className="mb-2">
+            Abaixo você encontra alguns exemplos de avaliações geradas com esta
+            ferramenta:
+          </h2>
+          <ul className="w-full flex flex-col items-start">
+            <li>
+              <a
+                href="/exemplos/avaliacao-1.pdf"
+                target="_blank"
+                className="flex items-center gap-2 hover:underline"
+              >
+                <FaFilePdf className="fill-rose-700" />
+                Exemplo 1
+              </a>
+            </li>
+            <li>
+              <a
+                href="/exemplos/avaliacao-2.pdf"
+                target="_blank"
+                className="flex items-center gap-2 hover:underline"
+              >
+                <FaFilePdf className="fill-rose-700" /> Exemplo 2
+              </a>
+            </li>
+            <li>
+              <a
+                href="/exemplos/avaliacao-3.pdf"
+                target="_blank"
+                className="flex items-center gap-2 hover:underline"
+              >
+                <FaFilePdf className="fill-rose-700" />
+                Exemplo 3
+              </a>
+            </li>
+            <li>
+              <a
+                href="/exemplos/avaliacao-4.pdf"
+                target="_blank"
+                className="flex items-center gap-2 hover:underline"
+              >
+                <FaFilePdf className="fill-rose-700" />
+                Exemplo 4
+              </a>
+            </li>
+            <li>
+              <a
+                href="/exemplos/avaliacao-5.pdf"
+                target="_blank"
+                className="flex items-center gap-2 hover:underline"
+              >
+                <FaFilePdf className="fill-rose-700" />
+                Exemplo 5
+              </a>
+            </li>
+          </ul>
+        </div>
 
         <Link
           to="/questionario"
