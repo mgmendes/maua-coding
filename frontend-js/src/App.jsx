@@ -8,7 +8,6 @@ import Footer from "./components/ui/Footer";
 import Resumo from "./components/pages/Resumo";
 import MainPage from "./components/pages/MainPage";
 import Questionario from "./components/pages/Questionario";
-import Contato from "./components/pages/Contato";
 import Resultado from "./components/pages/Resultado";
 import Logs from "./components/pages/Logs";
 
@@ -22,7 +21,6 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/questionario" element={<Questionario />} />
           <Route path="/resumo" element={<Resumo />} />
-          <Route path="/contato" element={<Contato />} />
           <Route path="/resultado" element={<Resultado />} />
           <Route path="/logs" element={<Logs />} />
         </Routes>
