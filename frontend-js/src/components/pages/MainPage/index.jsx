@@ -17,12 +17,12 @@ const MainPage = () => {
             <br /> Avaliações
           </h2>
         </div>
-        <div className="w-full bg-yellow-100 p-2">
+        {/* <div className="w-full bg-yellow-100 p-2">
           A fazer:
           <ul>
             <li>Gerar testes unitários para alguns itens do front-end</li>
           </ul>
-        </div>
+        </div> */}
         <p className="leading-7 mb-3">
           Apresentamos a nova ferramenta para educadores: o Gerador de
           Avaliações, uma aplicação desenhada para transformar a maneira como os
