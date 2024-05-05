@@ -10,6 +10,7 @@ import MainPage from "./components/pages/MainPage";
 import Questionario from "./components/pages/Questionario";
 import Contato from "./components/pages/Contato";
 import Resultado from "./components/pages/Resultado";
+import Logs from "./components/pages/Logs";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/resumo" element={<Resumo />} />
           <Route path="/contato" element={<Contato />} />
           <Route path="/resultado" element={<Resultado />} />
+          <Route path="/logs" element={<Logs />} />
         </Routes>
 
         <Footer />

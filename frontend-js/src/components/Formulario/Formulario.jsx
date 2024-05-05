@@ -15,6 +15,8 @@ const Formulario = () => {
     exemplo: "",
   });
 
+  const [errors, setErrors] = useState({});
+
   const { saveData } = useContext(DataContext);
 
   const navigator = useNavigate();
@@ -28,7 +30,51 @@ const Formulario = () => {
     }));
   };
 
-  const handleSaveData = () => {
+  const handleSaveData = async () => {
+    if (formData.tema === "")
+      return setErrors((prevErrors) => ({
+        ...prevErrors,
+        tema: "Campo obrigatório",
+      }));
+    if (formData.disciplina === "" || formData.disciplina === undefined)
+      return setErrors((prevErrors) => ({
+        ...prevErrors,
+        disciplina: "Selecione uma disciplina",
+      }));
+    if (formData.escolaridade === "" || formData.escolaridade === undefined)
+      return setErrors((prevErrors) => ({
+        ...prevErrors,
+        tema: "Selecione um nível de escolaridade",
+      }));
+    if (formData.dificuldade === "" || formData.dificuldade === undefined)
+      return setErrors((prevErrors) => ({
+        ...prevErrors,
+        tema: "Selecione um nível de dificuldade",
+      }));
+
+    // INSERE LOG NO BANCO DE DADOS
+    await fetch("http://localhost:3000/logs", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        mensagem: `${
+          new Date(Date.now()).toUTCString() +
+          " - " +
+          formData.tema +
+          " | " +
+          formData.disciplina +
+          " | " +
+          formData.escolaridade +
+          " | " +
+          formData.dificuldade +
+          " | " +
+          formData.exemplo
+        }`,
+      }),
+    });
+
     saveData(formData);
     navigator("/resumo");
   };
@@ -49,6 +95,8 @@ const Formulario = () => {
             onChange={handleForm}
             className="px-3 py-3 border border-neutral-700 rounded-md text-sm"
           />
+
+          {errors.tema && <span className="text-red-500">{errors.tema}</span>}
         </div>
 
         <div className="w-full flex flex-col gap-2">
@@ -66,6 +114,9 @@ const Formulario = () => {
               </option>
             ))}
           </select>
+          {errors.disciplina && (
+            <span className="text-red-500">{errors.disciplina}</span>
+          )}
         </div>
 
         <div className="w-full flex flex-col gap-2">
@@ -84,6 +135,9 @@ const Formulario = () => {
               </option>
             ))}
           </select>
+          {errors.escolaridade && (
+            <span className="text-red-500">{errors.escolaridade}</span>
+          )}
         </div>
 
         <div className="w-full flex flex-col gap-2">
@@ -100,6 +154,9 @@ const Formulario = () => {
               <option key={item.id}>{item.nivel}</option>
             ))}
           </select>
+          {errors.dificuldade && (
+            <span className="text-red-500">{errors.dificuldade}</span>
+          )}
         </div>
 
         <div className="w-full flex flex-col gap-2">

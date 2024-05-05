@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import logo from "/logo-604x679.png";
 import { FaFilePdf } from "react-icons/fa";
 
+const avaliacoesExemplo = [1, 2, 3, 4, 5, 6];
+
 const MainPage = () => {
   return (
     <div className="w-full bg-white">
@@ -18,10 +20,7 @@ const MainPage = () => {
         <div className="w-full bg-yellow-100 p-2">
           A fazer:
           <ul>
-            <li>Validar campos do formulário no front-end</li>
             <li>Gerar testes unitários para alguns itens do front-end</li>
-            <li>Ajustar a página de contato</li>
-            <li>Salvar a pesquisa e o retorno no banco de dados</li>
           </ul>
         </div>
         <p className="leading-7 mb-3">
@@ -44,56 +43,20 @@ const MainPage = () => {
             Abaixo você encontra alguns exemplos de avaliações geradas com esta
             ferramenta:
           </h2>
-          <ul className="w-full flex flex-col items-start">
-            <li>
-              <a
-                href="/exemplos/avaliacao-1.pdf"
-                target="_blank"
-                className="flex items-center gap-2 hover:underline"
-              >
-                <FaFilePdf className="fill-rose-700" />
-                Exemplo 1
-              </a>
-            </li>
-            <li>
-              <a
-                href="/exemplos/avaliacao-2.pdf"
-                target="_blank"
-                className="flex items-center gap-2 hover:underline"
-              >
-                <FaFilePdf className="fill-rose-700" /> Exemplo 2
-              </a>
-            </li>
-            <li>
-              <a
-                href="/exemplos/avaliacao-3.pdf"
-                target="_blank"
-                className="flex items-center gap-2 hover:underline"
-              >
-                <FaFilePdf className="fill-rose-700" />
-                Exemplo 3
-              </a>
-            </li>
-            <li>
-              <a
-                href="/exemplos/avaliacao-4.pdf"
-                target="_blank"
-                className="flex items-center gap-2 hover:underline"
-              >
-                <FaFilePdf className="fill-rose-700" />
-                Exemplo 4
-              </a>
-            </li>
-            <li>
-              <a
-                href="/exemplos/avaliacao-5.pdf"
-                target="_blank"
-                className="flex items-center gap-2 hover:underline"
-              >
-                <FaFilePdf className="fill-rose-700" />
-                Exemplo 5
-              </a>
-            </li>
+
+          <ul className="w-full grid grid-cols-2 items-start">
+            {avaliacoesExemplo.map((item, index) => (
+              <li key={index}>
+                <a
+                  href={`/exemplos/avaliacao-${item}.pdf`}
+                  target="_blank"
+                  className="flex items-center gap-2 hover:underline"
+                >
+                  <FaFilePdf className="fill-rose-700" />
+                  Exemplo {item}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 

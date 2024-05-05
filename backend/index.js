@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const colors = require("colors");
+const mysql = require("mysql2");
 
 const { OpenAI } = require("openai");
 
@@ -11,6 +12,17 @@ const PORT = process.env.PORT || 3000;
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 const openai = new OpenAI(OPENAI_API_KEY);
 
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: 3306,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+});
+
 app.use(express.json());
 app.use(cors());
 
@@ -18,12 +30,40 @@ app.get("/", (req, res) => {
   res.json({ message: "API Gerador de Avaliações funcionando..." });
 });
 
-app.get("/consulta", (req, res) => {
+app.get("/questionarios", (req, res) => {
   res.json({ message: "Consulta Endpoint", prompt });
 });
 
 app.post("/logs", async (req, res) => {
-  res.json({ message: "Gerador de Avaliações Endpoint" });
+  try {
+    const { mensagem } = req.body;
+    const sql = "INSERT INTO log (mensagem) VALUES (?)";
+
+    pool.query(sql, [mensagem], (err, results, fields) => {
+      if (err) {
+        console.error(err);
+      } else {
+        res.json({ message: "Gerador de Avaliações Endpoint", results });
+      }
+    });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+app.get("/logs", async (req, res) => {
+  try {
+    pool.query("SELECT * FROM log", (err, results, fields) => {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log(fields);
+        res.json(results);
+      }
+    });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 app.post("/gerador-avaliacoes", async (req, res) => {
