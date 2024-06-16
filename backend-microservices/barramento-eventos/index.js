@@ -4,7 +4,7 @@ const colors = require("colors");
 
 const app = express();
 
-const PORT = process.env.PORT || 1000;
+const PORT = process.env.PORT || 10000;
 
 app.use(express.json());
 app.use(cors());
