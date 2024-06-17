@@ -25,7 +25,6 @@ app.post("/eventos", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log("");
   console.log(
     colors.bgWhite.black(" BARRAMENTO DE EVENTOS ") +
       colors.bgYellow(" iniciado na porta " + PORT + " ")

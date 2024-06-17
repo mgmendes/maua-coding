@@ -25,10 +25,9 @@ app.post("/eventos", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log("");
   console.log(
-    colors.bgWhite.black(" CONSULTA CHATGPT SERVICE ") +
-      colors.bgYellow(" iniciado na porta " + PORT + " ")
+    colors.bgWhite.black(" MICROSERVIÇO CHATGPT  ") +
+      colors.bgYellow(" iniciado na porta " + PORT + "  ")
   );
   console.log("");
 });
