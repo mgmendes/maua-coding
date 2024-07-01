@@ -15,7 +15,11 @@ app.post("/eventos", (req, res) => {
   const evento = req.body;
   evento.push(evento);
 
+  // Envio para o Microsserviço de Consulta ChatGPT
   axios.post("http://localhost:3000/eventos", evento);
+
+  // Envio para o Microsserviço de Logs
+  axios.post("http://localhost:4000/eventos", evento);
 
   app.get("/eventos", (req, res) => {
     res.send(eventos);
