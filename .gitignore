@@ -3,6 +3,7 @@
 # dependencies
 /backend/node_modules/
 /frontend-js/node_modules/
+/frontend-mobile/node_modules/
 /backend-microservices/node_modules/
 /backend-microservices/barramento-eventos/node_modules/
 /backend-microservices/logs/node_modules/

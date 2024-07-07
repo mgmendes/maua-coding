@@ -13,6 +13,7 @@ import { StatusBar } from 'react-native';
 const Tab = createBottomTabNavigator();
 
 const container = (
+
 <NavigationContainer>
   <StatusBar barStyle="light-content"/>
   <Tab.Navigator
@@ -20,7 +21,8 @@ const container = (
     screenOptions={{
       headerStyle: {backgroundColor: '#242424'},
       headerTintColor: 'white',
-      title: 'Projeto ChatGPT - IMT'
+      title: 'Projeto ChatGPT - IMT',
+      tabBarHideOnKeyboard: true
     }}
   >
     <Tab.Screen
@@ -65,6 +67,7 @@ const container = (
     />
   </Tab.Navigator>
 </NavigationContainer>
+
 )
   
 export default container
