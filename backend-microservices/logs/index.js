@@ -1,11 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const colors = require("colors");
-const axios = require("axios");
 const mysql = require("mysql2");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+
+require("dotenv").config();
 
 app.use(express.json());
 app.use(cors());
@@ -21,28 +22,40 @@ const pool = mysql.createPool({
   queueLimit: 0,
 });
 
-const eventos = [];
+app.post("/eventos", (req, res) => {
+  console.log("POST Eventos em Log Microservice");
+  console.log("");
 
-app.post("/logs", (req, res) => {
   try {
-    const { mensagem } = req.body;
-    const sql = "INSERT INTO log (mensagem) VALUES (?)";
+    const dados = req.body;
 
-    pool.query(sql, [mensagem], (err, results, fields) => {
-      if (err) {
-        console.error(err);
-      } else {
-        res.json({ message: "Gerador de Avaliações Endpoint", results });
+    const log = JSON.parse(JSON.stringify(dados));
+
+    const sql =
+      "INSERT INTO registro (prompt_tokens, completion_tokens, total_tokens) VALUES (?, ?, ?)";
+
+    pool.query(
+      sql,
+      [log.prompt_tokens, log.completion_tokens, log.total_tokens],
+      (err, results, fields) => {
+        if (err) {
+          console.error(err);
+        } else {
+          res.json({ message: "Logs Endpoint", results });
+        }
       }
-    });
+    );
   } catch (error) {
     console.error(error);
   }
 });
 
 app.get("/logs", (req, res) => {
+  console.log("GET All Logs");
+  console.log("");
+
   try {
-    pool.query("SELECT * FROM log", (err, results, fields) => {
+    pool.query("SELECT * FROM registro", (err, results, fields) => {
       if (err) {
         console.error(err);
       } else {
@@ -53,19 +66,6 @@ app.get("/logs", (req, res) => {
   } catch (error) {
     console.error(error);
   }
-});
-
-app.post("/eventos", (req, res) => {
-  const evento = req.body;
-  evento.push(evento);
-
-  axios.post("http://localhost:10000/eventos", evento);
-
-  app.get("/eventos", (req, res) => {
-    res.send(eventos);
-  });
-
-  res.status(201).json({ msg: "Evento criado com sucesso" });
 });
 
 app.listen(PORT, () => {
