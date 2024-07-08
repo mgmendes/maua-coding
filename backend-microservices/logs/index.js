@@ -59,7 +59,6 @@ app.get("/logs", (req, res) => {
       if (err) {
         console.error(err);
       } else {
-        console.log(fields);
         res.json(results);
       }
     });
@@ -70,7 +69,7 @@ app.get("/logs", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(
-    colors.bgWhite.black(" MICROSERVIÇO LOGS     ") +
+    colors.bgWhite.black(" MICROSERVIÇO LOGS       ") +
       colors.bgYellow(" iniciado na porta " + PORT + "  ")
   );
   console.log("");

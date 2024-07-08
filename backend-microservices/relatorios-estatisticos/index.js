@@ -4,7 +4,7 @@ const colors = require("colors");
 const mysql = require("mysql2");
 
 const app = express();
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 8000;
 
 require("dotenv").config();
 
@@ -61,7 +61,6 @@ app.get("/relatorios-estatisticos", (req, res) => {
         if (err) {
           console.error(err);
         } else {
-          console.log(fields);
           res.json(results);
         }
       }

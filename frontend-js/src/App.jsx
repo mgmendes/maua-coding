@@ -10,6 +10,7 @@ import MainPage from "./components/pages/MainPage";
 import Questionario from "./components/pages/Questionario";
 import Resultado from "./components/pages/Resultado";
 import Logs from "./components/pages/Logs";
+import RelatorioEstatistico from "./components/pages/Relatorio-Estatistico";
 
 function App() {
   return (
@@ -23,6 +24,10 @@ function App() {
           <Route path="/resumo" element={<Resumo />} />
           <Route path="/resultado" element={<Resultado />} />
           <Route path="/logs" element={<Logs />} />
+          <Route
+            path="/relatorio-estatistico"
+            element={<RelatorioEstatistico />}
+          />
         </Routes>
 
         <Footer />

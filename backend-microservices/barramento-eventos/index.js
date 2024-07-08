@@ -1,3 +1,4 @@
+const axios = require("axios");
 const express = require("express");
 const cors = require("cors");
 const colors = require("colors");
@@ -9,28 +10,35 @@ const PORT = process.env.PORT || 10000;
 app.use(express.json());
 app.use(cors());
 
-const eventos = [];
+app.post("/eventos", async (req, res) => {
+  const { tipo, dados } = req.body;
+  console.log("Tipo:", tipo);
+  console.log("Dados: ", dados);
 
-app.post("/eventos", (req, res) => {
-  const evento = req.body;
-  evento.push(evento);
+  if (tipo === "log") {
+    console.log(colors.blue("Evento é um log"));
 
-  // Envio para o Microsserviço de Consulta ChatGPT
-  axios.post("http://localhost:3000/eventos", evento);
+    // Envia para o microserviço de logs
+    await axios.post(
+      "http://localhost:4000/eventos",
+      JSON.parse(JSON.stringify(dados))
+    );
 
-  // Envio para o Microsserviço de Logs
-  axios.post("http://localhost:4000/eventos", evento);
+    // Envia dados para o microserviço de relatórios estatísticos
+    await axios.post(
+      "http://localhost:8000/eventos",
+      JSON.parse(JSON.stringify(dados))
+    );
+  } else {
+    res.status(500).json({ msg: "Evento não identificado" });
+  }
 
-  app.get("/eventos", (req, res) => {
-    res.send(eventos);
-  });
-
-  res.status(201).json({ msg: "Evento criado com sucesso" });
+  res.status(201).json({ msg: "Evento criado com sucesso", dados });
 });
 
 app.listen(PORT, () => {
   console.log(
-    colors.bgWhite.black(" BARRAMENTO DE EVENTOS ") +
+    colors.bgCyan.black(" BARRAMENTO DE EVENTOS   ") +
       colors.bgYellow(" iniciado na porta " + PORT + " ")
   );
   console.log("");

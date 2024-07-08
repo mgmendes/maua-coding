@@ -17,6 +17,9 @@ const Header = () => {
             <li className="text-neutral-800 hover:bg-yellow-300 transition-all duration-300 bg-yellow-200 px-3 py-1 rounded-sm">
               <Link to="/logs">Visualizar Logs</Link>
             </li>
+            <li className="text-neutral-800 hover:bg-emerald-300-300 transition-all duration-300 bg-emerald-200 px-3 py-1 rounded-sm">
+              <Link to="/relatorio-estatistico">Relatório Utilização</Link>
+            </li>
           </ul>
         </nav>
       </div>
